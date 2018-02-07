@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // db connection setup
 MongoClient.connect(
-  "mongodb://starWarior:devTest123@ds125588.mlab.com:25588/star-wars-quotes",
+  "mongodb://<dbUser>:<dbPassword>@hostname:port/dbName",
   (err, client) => {
     if (err) return console.log(err);
     db = client.db("star-wars-quotes");
