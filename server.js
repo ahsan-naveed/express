@@ -8,10 +8,10 @@ const app = express();
 // set view engine
 app.set("view engine", "ejs");
 
-// enable body parser
+// enable body parser - req.body
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// db setup
+// db connection setup
 MongoClient.connect(
   "mongodb://starWarior:devTest123@ds125588.mlab.com:25588/star-wars-quotes",
   (err, client) => {
@@ -23,7 +23,7 @@ MongoClient.connect(
   }
 );
 
-// serve index.html from root dir
+// serve index.html/index.ejs from root/views dir resp.
 app.get("/", (req, res) => {
   let cursor = db
     .collection("quotes")
