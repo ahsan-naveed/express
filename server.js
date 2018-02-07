@@ -1,5 +1,9 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const MongoClient = require("mongodb").MongoClient;
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen("3000", () => {
   console.log("listening on port 3000");
@@ -12,7 +16,7 @@ app.get("/", (req, res) => {
 
 // post
 app.post("/quotes", (req, res) => {
-  console.log("POST Request made");
+  console.log(req.body);
 });
 
 console.log(`project directory: ${__dirname}`);
