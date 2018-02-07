@@ -16,7 +16,7 @@ MongoClient.connect(
   "mongodb://<dbUser>:<dbPassword>@hostname:port/dbName",
   (err, client) => {
     if (err) return console.log(err);
-    db = client.db("star-wars-quotes");
+    db = client.db("dbName");
     app.listen("3000", () => {
       console.log("listening on port 3000");
     });
