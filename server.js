@@ -10,4 +10,9 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "\\index.html");
 });
 
-console.log(__dirname);
+// post
+app.post("/quotes", (req, res) => {
+  console.log("POST Request made");
+});
+
+console.log(`project directory: ${__dirname}`);
