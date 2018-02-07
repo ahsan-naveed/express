@@ -30,9 +30,9 @@ app.get("/", (req, res) => {
     .find()
     .toArray((err, results) => {
       if (err) return console.log(err);
-      console.log(results);
+      res.render("index.ejs", { quotes: results });
     });
-  res.sendFile(__dirname + "\\index.html");
+  // res.sendFile(__dirname + "\\index.html");
 });
 
 // post
