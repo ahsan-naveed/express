@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const app = express();
 
+// set view engine
+app.set("view engine", "ejs");
+
+// enable body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // db setup
@@ -21,6 +25,13 @@ MongoClient.connect(
 
 // serve index.html from root dir
 app.get("/", (req, res) => {
+  let cursor = db
+    .collection("quotes")
+    .find()
+    .toArray((err, results) => {
+      if (err) return console.log(err);
+      console.log(results);
+    });
   res.sendFile(__dirname + "\\index.html");
 });
 
@@ -29,6 +40,7 @@ app.post("/quotes", (req, res) => {
   db.collection("quotes").save(req.body, (err, result) => {
     if (err) return console.log(err);
     console.log("saved to database");
+    // redirect to home after successful submission
     res.redirect("/");
   });
 });
